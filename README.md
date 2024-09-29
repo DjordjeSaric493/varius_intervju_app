@@ -15,8 +15,10 @@ Po principu **Evo ti osnovni task, možeš gledaš dokumentaciju, internet i pri
 
 **konstruktivna zamerka koju mi je uputio CTO**- ***funkciju odvoj od ekrana (probao ali sam zaboravio kako da odvojim onaj alert dialog koji te smara za context kad vraća grešku prilikom neuspele login ili reg, probaću sad u odvojeni widget da se igram)*** ukratko:čovek je legendica, pošteno me istersao sa pitanjima i iskreno se nadam da ću vrlo uskoro raditi i učiti od njih
 
-PRIMENA MVVM
-file:///home/djordje/programiranje/flutter%20apps/varius_intervju_app/MVVM
+PRIMENA MVVM 
+file:///home/djordje/Downloads/mvvm.jpg
+
+
 
 IMAM DVA KONTROLERA:AUTH (REGISTER,HTTP) I USERCONTROLLER (logout,get token, odjavi me)
 state management: provider (to sam objasnio koliko toliko pristojno iako nisam mogao da ga iskoristim na intervjuu jer nisam imao za šta)
