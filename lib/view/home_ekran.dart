@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:varius_intervju_app/utils/boje.dart';
 import 'package:varius_intervju_app/viewmodel/supabase_auth_servis.dart';
+import 'package:varius_intervju_app/viewmodel/user_auth_servis.dart';
 
 class HomeEkran extends StatelessWidget {
   const HomeEkran({super.key});
@@ -19,11 +20,11 @@ class HomeEkran extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () async {
-                await supaAuthViewModel.odjaviMe();
+                await UserAuthServis().odjaviMe();
                 Navigator.popUntil(
                     context,
                     (route) =>
-                        route.isFirst); //BRIŠI STANJA I VRSATI NA POČETNI EKRAN
+                        route.isFirst); //BRIŠI STANJA I VRATI NA POČETNI EKRAN
               },
               icon: Icon(Icons.logout_sharp))
         ],

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:varius_intervju_app/utils/konstante.dart';
 import 'package:varius_intervju_app/view/register_ekeran.dart';
 import 'package:varius_intervju_app/viewmodel/supabase_auth_servis.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(url: baseUrl, anonKey: api);
   runApp(const MainApp());
 }
 

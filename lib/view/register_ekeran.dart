@@ -22,69 +22,79 @@ class Registr extends StatelessWidget {
       appBar: AppBar(
         title: regAppBarText,
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: registerGradijent,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              TextField(
-                controller: _usernameControll,
-                decoration: InputDecoration(labelText: 'Korisničko ime'),
-              ),
-              TextField(
-                controller: _passwordControll,
-                decoration: InputDecoration(labelText: 'Šifra'),
-                obscureText: true,
-              ),
-              TextField(
-                controller: _fullNameControll,
-                decoration: InputDecoration(labelText: 'Puno vime'),
-              ),
-              SizedBox(height: 20),
-              //ako se u auth učitava onda circ progesss indikaroe
-              supaAuthViewModel
-                      .ucitava //ovde treba provider da prati jel ulogovan
-                  ? CircularProgressIndicator()
-                  //ako je učitan ideš na elevated button ->probaj da odvojiš
-                  : ElevatedButton(
-                      onPressed: () async {
-                        bool success = await supaAuthViewModel.registrujSe(
-                          _usernameControll.text,
-                          _passwordControll.text,
-                          _fullNameControll.text,
-                        );
-                        if (success) {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginEkran()),
+      body: Opacity(
+        opacity: 0.9,
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: registerGradijent,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                SizedBox(height: 60),
+                TextField(
+                  controller: _usernameControll,
+                  decoration: InputDecoration(labelText: 'Korisničko ime'),
+                ),
+                SizedBox(height: 20),
+                TextField(
+                  controller: _passwordControll,
+                  decoration:
+                      InputDecoration(labelText: 'Šifra-> MIN 6 KARAKTERA'),
+                  style: TextStyle(color: Colors.black),
+                  obscureText: true,
+                ),
+                TextField(
+                  controller: _fullNameControll,
+                  decoration: InputDecoration(labelText: 'Puno ime'),
+                ),
+                SizedBox(height: 20),
+                //ako se u auth učitava onda circ progesss indikaroe
+                supaAuthViewModel
+                        .ucitava //ovde treba provider da prati jel ulogovan
+                    ? CircularProgressIndicator()
+                    //ako je učitan ideš na elevated button ->probaj da odvojiš
+                    : ElevatedButton(
+                        onPressed: () async {
+                          bool success = await supaAuthViewModel.registrujSe(
+                            _usernameControll.text,
+                            _passwordControll.text,
+                            _fullNameControll.text,
                           );
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                                content: Text(
-                                    SupabaseAuthServis().supaErrorMessage)),
-                          );
-                        }
-                      },
-                      child: Text('Registruj se'),
-                    ),
-              SizedBox(
-                height: 20,
-              ),
-              Text("Imaš nalog?"),
-              SizedBox(
-                height: 10,
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    MaterialPageRoute(builder: (context) => LoginEkran());
-                  },
-                  child: Text("Uloguj se ovde")),
-            ],
+                          if (success) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginEkran()),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  content: Text(
+                                      SupabaseAuthServis().supaErrorMessage)),
+                            );
+                          }
+                        },
+                        child: Text('Registruj se'),
+                      ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text("Imaš nalog?"),
+                SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginEkran()),
+                      );
+                    },
+                    child: Text("Uloguj se ovde")),
+              ],
+            ),
           ),
         ),
       ),

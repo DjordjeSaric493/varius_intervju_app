@@ -7,7 +7,7 @@
 import 'package:flutter/material.dart';
 
 Color registerCrvena = Color.fromARGB(185, 196, 6, 6);
-Color registerCrnaBraon = Color.fromARGB(255, 80, 33, 2);
+Color registerBraon = Color.fromARGB(255, 155, 65, 4);
 Color loginSvetloPlava = Color.fromARGB(255, 124, 223, 248);
 Color loginZelena = Color.fromARGB(255, 34, 189, 29);
 
@@ -15,9 +15,9 @@ Color regtextCrvena = const Color.fromARGB(255, 243, 50, 36);
 Color logintextPlava = Color.fromARGB(255, 7, 218, 255);
 
 RadialGradient registerGradijent = RadialGradient(
-  colors: [registerCrvena, registerCrnaBraon],
+  colors: [registerBraon, registerCrvena],
   center: Alignment.center,
-  focalRadius: 49.3,
+  focalRadius: 20,
 );
 
 LinearGradient loginGradijent = LinearGradient(

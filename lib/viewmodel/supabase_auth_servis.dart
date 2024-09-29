@@ -3,13 +3,12 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart'; //as http da ne javlja grešku kod await http.nešto
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:varius_intervju_app/utils/konstante.dart'; //as http da ne javlja grešku kod await http.nešto
 
 class SupabaseAuthServis extends ChangeNotifier {
-  final String baseUrl = 'https://zxfrncawjgqqhkhfgfty.supabase.co';
-  final String api = '';
   bool ucitava = false;
-  String supaErrorMessage = 'GREŠKA!!';
+  String supaErrorMessage = 'greska';
 
   Future<bool> registrujSe(
       //treba da prosleedim kor ime,šifru i puno ime
@@ -21,7 +20,7 @@ class SupabaseAuthServis extends ChangeNotifier {
     //ovde dodajem loading flag gde se vrši http zahtev da je true i provider notifyListeners()
     ucitava = true;
     notifyListeners(); //obavesti o svakoj promeni
-    final url = Uri.parse('$baseUrl/korisnici');
+    final url = Uri.parse('$baseUrl');
     final headeri = {
       'Content-Type': 'application/json',
       'apikey': api,
@@ -34,17 +33,18 @@ class SupabaseAuthServis extends ChangeNotifier {
       'full_name': fullname,
       'token': 'token_koji_čekam_', // Ovaj token ćeš kasnije ažurirati
     });
-    final serverRespone = await http.post(url, headers: headeri, body: body);
+    final serverResponse = await http.post(url, headers: headeri, body: body);
 
     ucitava = false;
     notifyListeners();
 
     //ovde postoje dve opcije, ili si se registrovao tj response je 201 ili nisi
 
-    if (serverRespone.statusCode == 201) {
+    if (serverResponse.statusCode == 200) {
       return true;
     } else {
       //dodaj custom widget da prikazuje neki jak mim tipa jbg nije uspelo
+      print('GREŠKA: ${serverResponse.body}'); //da ispratim kad me zeza
       return false;
     }
   }
@@ -58,7 +58,6 @@ class SupabaseAuthServis extends ChangeNotifier {
     };
 
     final response = await http.get(url, headers: headers);
-
     //ako je statcode 200=ok, uspešno što ne mogu reći za ishod tehničkog intervjua
     if (response.statusCode == 200) {
       //šta mi on vraća kao odgovor, parsiram json normalno
@@ -76,34 +75,6 @@ class SupabaseAuthServis extends ChangeNotifier {
       }
     }
     return false;
-  }
-
-  Future<void> odjaviMe() async {
-    final prefs = await SharedPreferences.getInstance();
-    //KAD SE ODJAVI UKLANJAM TOKEN I FULL NAME ŠTO SAM PROSLEDIO
-    await prefs.remove('token');
-    await prefs.remove("full_name");
-  }
-
-  //bukvalno identične samo što prva uzima token a druga puno ime (iz registracije)
-  //asinrono šaljem zahtev pa čekam odgovor od servera
-  Future<String?> getToken() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('token');
-  }
-
-  Future<String?> getFullName() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('full_name');
-  }
-
-  //proveravam da l je trenutno ulogovan
-  Future<bool> jeUlogovan() async {
-    //prvo cimam getToken vraćam TRENUTNO sačuvan token
-    final token = await getToken();
-    //ako postoji->vrati token u suprotnom vrati null
-    return token != null;
-    //ako ne vraćam null onda je true, else false
   }
 }
 
