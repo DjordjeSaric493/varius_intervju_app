@@ -9,11 +9,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  http: ^1.2.2
+  provider: ^6.1.2
+  shared_preferences: ^2.3.2
 
 dev_dependencies:
+  flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
 
 assets:
   - asseti/varius_logo.png
