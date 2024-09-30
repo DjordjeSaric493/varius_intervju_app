@@ -30,6 +30,9 @@ class HomeEkran extends StatelessWidget {
         ],
       ),
       //ovde definišem body
+      body: Center(
+        child: variuslogo,
+      ),
     );
   }
 }

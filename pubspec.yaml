@@ -21,7 +21,7 @@ dev_dependencies:
     sdk: flutter
 
 assets:
-  - asseti/varius_logo.png
+  - assets/varius_logo.png
 
 flutter:
   uses-material-design: true

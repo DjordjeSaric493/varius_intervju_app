@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:varius_intervju_app/utils/boje.dart';
 import 'package:varius_intervju_app/utils/tekst_sminke.dart';
-import 'package:varius_intervju_app/view/login_ekran.dart';
+import 'package:varius_intervju_app/view/ekrani/login_ekran.dart';
 import 'package:varius_intervju_app/viewmodel/supabase_auth_servis.dart';
 
 //na intevjuu sam radio kao stf da bi mogao da pratim šta i kako ide

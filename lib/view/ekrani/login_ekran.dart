@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:varius_intervju_app/utils/boje.dart';
 import 'package:varius_intervju_app/utils/tekst_sminke.dart';
-import 'package:varius_intervju_app/view/home_ekran.dart';
+import 'package:varius_intervju_app/view/ekrani/home_ekran.dart';
 import 'package:varius_intervju_app/viewmodel/supabase_auth_servis.dart';
 
 //pohvatao sam kako da nema stanje već da uzima sve iz kontrolera

@@ -26,3 +26,18 @@ LinearGradient loginGradijent = LinearGradient(
   end: Alignment.topRight,
   transform: GradientRotation(69),
 );
+
+LinearGradient splashGradijent = LinearGradient(
+  colors: [
+    Color(0xFF42A5F5), // Start color
+    Color(0xFF1976D2), // End color
+  ],
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+);
+
+Image variuslogo = Image.asset(
+  'assets/varius_logo.png',
+  width: 150,
+  height: 150,
+);
